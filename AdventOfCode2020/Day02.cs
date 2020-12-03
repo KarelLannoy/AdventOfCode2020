@@ -18,7 +18,7 @@ namespace AdventOfCode2020
             }
 
             return count.ToString();
-            throw new Exception("Bad soluion");
+            throw new Exception("Bad solution");
         }
 
         public static bool PasswordValidatorOne(string passwordLine)
@@ -48,7 +48,7 @@ namespace AdventOfCode2020
             }
 
             return count.ToString();
-            throw new Exception("Bad soluion");
+            throw new Exception("Bad solution");
         }
 
         public static bool PasswordValidatorTwo(string passwordLine)

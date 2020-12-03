@@ -39,6 +39,7 @@ namespace AdventOfCode2020
             var input = InputParser.GetInputLines("day01.txt");
             var intList = new List<int>();
             input.ForEach(inputItem => intList.Add(int.Parse(inputItem)));
+            input.Sort();
 
             for (int i = 0; i < intList.Count; i++)
             {
