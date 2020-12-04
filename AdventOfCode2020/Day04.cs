@@ -26,6 +26,18 @@ namespace AdventOfCode2020
             throw new Exception("Bad solution");
         }
 
+        private static bool ValidatePassport_1(Dictionary<string, string> passport)
+        {
+            foreach (var passportfield in _passportFields)
+            {
+                if (!passport.ContainsKey(passportfield))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
         public static string Two()
         {
             var inputs = InputParser.GetInputLines("day04.txt");
@@ -49,44 +61,36 @@ namespace AdventOfCode2020
                 if (!passport.ContainsKey(passportfield))
                     return false;
             }
-            if (!NumericRangeChecker(passport["byr"], 1920, 2002))
-                return false;
-            if (!NumericRangeChecker(passport["iyr"], 2010, 2020))
-                return false;
-            if (!NumericRangeChecker(passport["eyr"], 2020, 2030))
-                return false;
-            if (!HeightChecker(passport["hgt"]))
-                return false;
-            if (!HairColorChecker(passport["hcl"]))
-                return false;
-            if (!_eyeColors.Contains(passport["ecl"]))
-                return false;
-            return PassportIdChecker(passport["pid"]);
+            return NumericRangeChecker(passport["byr"], 1920, 2002)
+                &&
+                NumericRangeChecker(passport["iyr"], 2010, 2020)
+                &&
+                NumericRangeChecker(passport["eyr"], 2020, 2030)
+                &&
+                HeightChecker(passport["hgt"])
+                &&
+                HairColorChecker(passport["hcl"])
+                &&
+                _eyeColors.Contains(passport["ecl"])
+                &&
+                PassportIdChecker(passport["pid"]);
         }
 
         private static bool HairColorChecker(string field)
         {
-            if (field.Length != 7)
-                return false;
-            if (field[0] != '#')
-                return false;
-            var colorString = field.Substring(1);
-            return IsHexadecimal(colorString);
-
+            return field.Length == 7 && field[0] == '#' && IsHexadecimal(field.Substring(1));
         }
 
         private static bool PassportIdChecker(string field)
         {
-            if (field.Length != 9)
-                return false;
-            return IsNumeric(field);
+            return field.Length == 9 && IsNumeric(field);
+
         }
 
         private static bool HeightChecker(string field)
         {
             var height = field.Substring(0, field.Length - 2);
             var unit = field.Substring(field.Length - 2, 2);
-
             switch (unit)
             {
                 case "cm":
@@ -96,14 +100,11 @@ namespace AdventOfCode2020
                 default:
                     return false; ;
             }
-
         }
 
         private static bool NumericRangeChecker(string field, int lowerBound, int upperBound)
         {
-            if (!IsNumeric(field))
-                return false;
-            return (int.Parse(field) <= upperBound && int.Parse(field) >= lowerBound);
+            return IsNumeric(field) && (int.Parse(field) <= upperBound && int.Parse(field) >= lowerBound);
         }
 
         private static bool IsNumeric(string value)
@@ -114,18 +115,6 @@ namespace AdventOfCode2020
         private static bool IsHexadecimal(string value)
         {
             return Regex.IsMatch(value, @"\A\b[0-9a-fA-F]+\b\Z");
-        }
-
-        private static bool ValidatePassport_1(Dictionary<string, string> passport)
-        {
-            foreach (var passportfield in _passportFields)
-            {
-                if (!passport.ContainsKey(passportfield))
-                {
-                    return false;
-                }
-            }
-            return true;
         }
 
         private static List<Dictionary<string, string>> CreatePassports(List<string> inputs)
