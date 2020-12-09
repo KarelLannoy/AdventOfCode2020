@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
 
 namespace AdventOfCode2020
 {
@@ -17,7 +14,6 @@ namespace AdventOfCode2020
         private static (bool, int) RunCode(List<string> bootCode)
         {
             HashSet<int> instructionHistory = new HashSet<int>();
-
             var InfinitLoopError = false;
             var pointer = 0;
             var accumulator = 0;
@@ -70,7 +66,6 @@ namespace AdventOfCode2020
                     if (!result.Item1)
                         return result.Item2;
                 }
-                
             }
             throw new Exception("No solution found");
         }

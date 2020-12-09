@@ -24,6 +24,23 @@ namespace AdventOfCode2020
             return result;
         }
 
+        public static List<T> GetInputLines<T>(string fileName)
+        {
+            string line;
+            var result = new List<T>();
+            // Read the file and display it line by line.  
+            System.IO.StreamReader file =
+                new System.IO.StreamReader(@"..\..\..\inputs\" + fileName);
+            while ((line = file.ReadLine()) != null)
+            {
+                result.Add((T)Convert.ChangeType(line, typeof(T)));
+            }
+
+            file.Close();
+            // Suspend the screen.  
+            return result;
+        }
+
         public static string GetInputText(string fileName)
         {
             // Read the file and display it line by line.  
