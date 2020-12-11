@@ -39,12 +39,12 @@ namespace AdventOfCode2020
                         var newPoint = new Point(x, y);
                         if (seatMatrix.ContainsKey(newPoint))
                         {
-                            var numberOfOccupiedAdjecentSeats = NumberOfOccupiedAdjecentSeats(newPoint, previousSeatMatrixCopy, false);
-                            if (numberOfOccupiedAdjecentSeats == 0)
+                            var numberOfOccupiedAdjacentSeats = NumberOfOccupiedAdjacentSeats(newPoint, previousSeatMatrixCopy, false);
+                            if (numberOfOccupiedAdjacentSeats == 0)
                             {
                                 seatMatrix[newPoint] = true;
                             }
-                            if (numberOfOccupiedAdjecentSeats >= 4)
+                            if (numberOfOccupiedAdjacentSeats >= 4)
                             {
                                 seatMatrix[newPoint] = false;
                             }
@@ -61,21 +61,21 @@ namespace AdventOfCode2020
             return dic1.Keys.All(k => dic2.ContainsKey(k) && object.Equals(dic2[k], dic1[k]));
         }
 
-        private static int NumberOfOccupiedAdjecentSeats(Point point, Dictionary<Point, bool> seatMatrix, bool visibleAdjecent)
+        private static int NumberOfOccupiedAdjacentSeats(Point point, Dictionary<Point, bool> seatMatrix, bool visibleAdjacent)
         {
             var count = 0;
-            List<Point> adjecentPoints = new List<Point>();
-            if (visibleAdjecent)
+            List<Point> adjacentPoints = new List<Point>();
+            if (visibleAdjacent)
             {
-                adjecentPoints = GetVisibleAdjecentPoints(point, seatMatrix);
+                adjacentPoints = GetVisibleAdjacentPoints(point, seatMatrix);
             }else
             {
-                adjecentPoints = GetAdjecentPoints(point);
+                adjacentPoints = GetAdjacentPoints(point);
             }
 
-            foreach (var adjecentPoint in adjecentPoints)
+            foreach (var adjacentPoint in adjacentPoints)
             {
-                if (seatMatrix.ContainsKey(adjecentPoint) && seatMatrix[adjecentPoint])
+                if (seatMatrix.ContainsKey(adjacentPoint) && seatMatrix[adjacentPoint])
                 {
                     count++;
                 }
@@ -83,10 +83,10 @@ namespace AdventOfCode2020
             return count;
         }
 
-        private static List<Point> GetVisibleAdjecentPoints(Point point, Dictionary<Point, bool> seatMatrix)
+        private static List<Point> GetVisibleAdjacentPoints(Point point, Dictionary<Point, bool> seatMatrix)
         {
             List<Direction> directions = new List<Direction>() { new Direction(-1, -1), new Direction(0, -1), new Direction(1, -1), new Direction(1, 0), new Direction(1, 1), new Direction(0, 1), new Direction(-1, 1), new Direction(-1, 0) };
-            List<Point> adjecentVisiblePoints = new List<Point>();
+            List<Point> adjacentVisiblePoints = new List<Point>();
             foreach (var direction in directions)
             {
                 bool result = false;
@@ -98,19 +98,19 @@ namespace AdventOfCode2020
                     {
                         if (seatMatrix.ContainsKey(newPoint))
                         {
-                            adjecentVisiblePoints.Add(newPoint);
+                            adjacentVisiblePoints.Add(newPoint);
                             result = true;
                         }
                             
                     }
                     else
                     {
-                        adjecentVisiblePoints.Add(newPoint);
+                        adjacentVisiblePoints.Add(newPoint);
                         result = true;
                     }
                 }
             }
-            return adjecentVisiblePoints;
+            return adjacentVisiblePoints;
         }
 
         private static bool IsOutOfBound(Point point, Dictionary<Point, bool> seatMatrix)
@@ -118,7 +118,7 @@ namespace AdventOfCode2020
             return point.X < _xMinBound || point.X > _xMaxBound || point.Y < _yMinBound || point.Y > _yMaxBound;
         }
 
-        private static List<Point> GetAdjecentPoints(Point point)
+        private static List<Point> GetAdjacentPoints(Point point)
         {
             return new List<Point>() { new Point(point.X - 1, point.Y - 1), new Point(point.X, point.Y - 1), new Point(point.X + 1, point.Y - 1), new Point(point.X + 1, point.Y),
                 new Point(point.X + 1, point.Y + 1), new Point(point.X, point.Y + 1), new Point(point.X - 1, point.Y + 1), new Point(point.X - 1, point.Y)};
@@ -164,12 +164,12 @@ namespace AdventOfCode2020
                         var newPoint = new Point(x, y);
                         if (seatMatrix.ContainsKey(newPoint))
                         {
-                            var numberOfOccupiedAdjecentSeats = NumberOfOccupiedAdjecentSeats(newPoint, previousSeatMatrixCopy, true);
-                            if (numberOfOccupiedAdjecentSeats == 0)
+                            var numberOfOccupiedAdjacentSeats = NumberOfOccupiedAdjacentSeats(newPoint, previousSeatMatrixCopy, true);
+                            if (numberOfOccupiedAdjacentSeats == 0)
                             {
                                 seatMatrix[newPoint] = true;
                             }
-                            if (numberOfOccupiedAdjecentSeats >= 5)
+                            if (numberOfOccupiedAdjacentSeats >= 5)
                             {
                                 seatMatrix[newPoint] = false;
                             }
