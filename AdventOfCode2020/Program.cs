@@ -55,6 +55,8 @@ namespace AdventOfCode2020
             Console.WriteLine(Day15.Two());
             Console.WriteLine($"{sw.ElapsedMilliseconds} ms");
 
+
+            sw.Stop();
             Console.ReadLine();
         }
 

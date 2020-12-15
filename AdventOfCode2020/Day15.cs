@@ -13,25 +13,15 @@ namespace AdventOfCode2020
     {
         public static long One()
         {
-            var input = InputParser.GetInputCommaSeperated<int>("day15.txt");
-            var startIndex = input.Count;
-
-            for (int i = startIndex; i < 2020; i++)
-            {
-                var previousNumber = input[i-1];
-                if (input.Count(num => num == previousNumber) > 1)
-                {
-                    var indexes = Enumerable.Range(0, input.Count).Where(i => input[i] == previousNumber).ToList();
-                    var secondToLastIndex = indexes.OrderByDescending(o=>o).Skip(1).First();
-                    input.Add((i - 1) - secondToLastIndex);
-                }
-                else
-                    input.Add(0);
-            }
-            return input.Last();
+            return GetNumberSpokenAt(2020);
         }
 
         public static long Two()
+        {
+            return GetNumberSpokenAt(30000000);
+        }
+
+        private static long GetNumberSpokenAt(int number)
         {
             var input = InputParser.GetInputCommaSeperated<int>("day15.txt");
             var startIndex = input.Count;
@@ -41,7 +31,7 @@ namespace AdventOfCode2020
                 lastKnownIndexOfTable.Add(input[i], i);
             }
             var previousNumber = input.Last();
-            for (int i = startIndex; i < 30000000; i++)
+            for (int i = startIndex; i < number; i++)
             {
                 int newNumber = 0;
                 if (lastKnownIndexOfTable.ContainsKey(previousNumber))
@@ -50,7 +40,6 @@ namespace AdventOfCode2020
                 }
                 lastKnownIndexOfTable[previousNumber] = (i - 1);
                 previousNumber = newNumber;
-
             }
             return previousNumber;
         }
