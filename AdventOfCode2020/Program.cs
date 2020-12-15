@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace AdventOfCode2020
 {
@@ -46,8 +47,13 @@ namespace AdventOfCode2020
             //Console.WriteLine(Day14.One());
             //Console.WriteLine(Day14.Two());
 
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
             Console.WriteLine(Day15.One());
+            Console.WriteLine($"{sw.ElapsedMilliseconds} ms");
+            sw.Restart();
             Console.WriteLine(Day15.Two());
+            Console.WriteLine($"{sw.ElapsedMilliseconds} ms");
 
             Console.ReadLine();
         }
