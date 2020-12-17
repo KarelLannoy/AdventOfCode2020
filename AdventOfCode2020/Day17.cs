@@ -162,7 +162,20 @@ namespace AdventOfCode2020
                     cubesResult[cube.Key] = (activeNeighbours == 3);
                 }
             }
-            return cubesResult;
+
+            var ActiveKubes = cubesResult.Where(c => c.Value).ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
+
+            var minOuterBoundX = ActiveKubes.Keys.Min(k => k.X);
+            var maxOuterBoundX = ActiveKubes.Keys.Max(k => k.X);
+            var minOuterBoundY = ActiveKubes.Keys.Min(k => k.Y);
+            var maxOuterBoundY = ActiveKubes.Keys.Max(k => k.Y);
+            var minOuterBoundZ = ActiveKubes.Keys.Min(k => k.Z);
+            var maxOuterBoundZ = ActiveKubes.Keys.Max(k => k.Z);
+            var minOuterBoundW = ActiveKubes.Keys.Min(k => k.W);
+            var maxOuterBoundW = ActiveKubes.Keys.Max(k => k.W);
+
+            
+            return cubesResult.Where(k=>k.Key.X >= minOuterBoundX && k.Key.X <= maxOuterBoundX && k.Key.Y >= minOuterBoundY && k.Key.Y <= maxOuterBoundY && k.Key.Z >= minOuterBoundZ && k.Key.Z <= maxOuterBoundZ && k.Key.W >= minOuterBoundW && k.Key.W <= maxOuterBoundW).ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
         }
 
         private static List<FourDimensionalCube> GetNeighbouringFourDimensionalCubes(FourDimensionalCube cube)
