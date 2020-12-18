@@ -62,11 +62,18 @@ namespace AdventOfCode2020
             //Console.WriteLine(Day16.Two());
             //Console.WriteLine($"{sw.ElapsedMilliseconds} ms");
 
+            //sw.Start();
+            //Console.WriteLine(Day17.One());
+            //Console.WriteLine($"{sw.ElapsedMilliseconds} ms");
+            //sw.Restart();
+            //Console.WriteLine(Day17.Two());
+            //Console.WriteLine($"{sw.ElapsedMilliseconds} ms");
+
             sw.Start();
-            Console.WriteLine(Day17.One());
+            Console.WriteLine(Day18.One());
             Console.WriteLine($"{sw.ElapsedMilliseconds} ms");
             sw.Restart();
-            Console.WriteLine(Day17.Two());
+            Console.WriteLine(Day18.Two());
             Console.WriteLine($"{sw.ElapsedMilliseconds} ms");
 
 
