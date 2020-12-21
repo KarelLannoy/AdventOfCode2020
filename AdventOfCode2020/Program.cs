@@ -86,9 +86,9 @@ namespace AdventOfCode2020
             sw.Start();
             Console.WriteLine(Day20.One());
             Console.WriteLine($"{sw.ElapsedMilliseconds} ms");
-            //sw.Restart();
-            //Console.WriteLine(Day20.Two());
-            //Console.WriteLine($"{sw.ElapsedMilliseconds} ms");
+            sw.Restart();
+            Console.WriteLine(Day20.Two());
+            Console.WriteLine($"{sw.ElapsedMilliseconds} ms");
 
 
             sw.Stop();
