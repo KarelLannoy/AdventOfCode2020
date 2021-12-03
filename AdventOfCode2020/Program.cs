@@ -111,11 +111,15 @@ namespace AdventOfCode2020
             //Console.WriteLine(Day23.Two());
             //Console.WriteLine($"{sw.ElapsedMilliseconds} ms");
 
+            //sw.Start();
+            //Console.WriteLine(Day24.One());
+            //Console.WriteLine($"{sw.ElapsedMilliseconds} ms");
+            //sw.Restart();
+            //Console.WriteLine(Day24.Two());
+            //Console.WriteLine($"{sw.ElapsedMilliseconds} ms");
+
             sw.Start();
-            Console.WriteLine(Day24.One());
-            Console.WriteLine($"{sw.ElapsedMilliseconds} ms");
-            sw.Restart();
-            Console.WriteLine(Day24.Two());
+            Day25.One();
             Console.WriteLine($"{sw.ElapsedMilliseconds} ms");
 
 
